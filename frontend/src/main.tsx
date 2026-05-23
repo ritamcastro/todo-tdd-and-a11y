@@ -19,10 +19,10 @@ const ToDo = () => {
         value={newItem}
         onChange={e => setNewItem(e.target.value)}
       />
+      <button onClick={addToDo}>Add</button>
       {todos.map(item => (
         <div>{item}</div>
       ))}
-      <button onClick={addToDo}>Add</button>
     </div>
   )
 }
