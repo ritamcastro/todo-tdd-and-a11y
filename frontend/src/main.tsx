@@ -9,11 +9,11 @@ const ToDo = () => {
 
   const addToDo = () => {
     setTodos([...todos, newItem])
+    setNewItem('')
   }
 
   return (
     <div>
-      <button onClick={addToDo}>Add</button>
       <input
         placeholder="what needs to be done?"
         value={newItem}
@@ -22,6 +22,7 @@ const ToDo = () => {
       {todos.map(item => (
         <div>{item}</div>
       ))}
+      <button onClick={addToDo}>Add</button>
     </div>
   )
 }
