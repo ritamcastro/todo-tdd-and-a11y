@@ -1,0 +1,45 @@
+{
+  "folders": [
+    {
+      "path": ".",
+      "name": "workshop"
+    },
+    {
+      "path": "frontend"
+    },
+    {
+      "path": "e2e"
+    },
+  ],
+  "settings": {
+    "biome.enabled": false, // To avoid spining up multiple instances of biome
+    "vitest.shellType": "terminal",
+    "files.exclude": {
+      "**/.git": true,
+      "**/.DS_Store": true,
+      "frontend/": true,
+      "e2e": true
+    },
+    "editor.defaultFormatter": null,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.biome": "explicit"
+    },
+    "[css]": {
+      "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.formatOnPaste": true,
+    "codesnap.shutterAction": "copy",
+    "codesnap.target": "window",
+    "codesnap.boxShadow": "0 0 10px rgba(0, 0, 0, 0.5)",
+    "codesnap.containerPadding": "1em",
+    "codesnap.backgroundColor": "rgba(1,1,1, 0.1)",
+    "[json]": {
+      "editor.defaultFormatter": "vscode.json-language-features"
+    }
+  }
+}

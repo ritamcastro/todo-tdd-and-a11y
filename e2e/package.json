@@ -1,0 +1,26 @@
+{
+  "name": "e2e-tests-todo-tdd-and-a11y",
+  "version": "1.0.0",
+  "description": "Playwright tests for the To-Do Application",
+  "author": "Rita Castro",
+  "license": "MIT",
+  "main": "index.js",
+  "keywords": [
+    "playwright",
+    "tdd",
+    "a11y",
+    "workshop"
+  ],
+  "scripts": {
+    "pretest": "npx playwright install --with-deps",
+    "test": "npx playwright test",
+    "test-ui": "playwright test --ui"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
+    "@biomejs/biome": "2.4.15",
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.1"
+  }
+}

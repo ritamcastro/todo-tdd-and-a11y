@@ -1,0 +1,27 @@
+{
+  "name": "frontend-todo-tdd-and-a11y",
+  "homepage": "https://ritamcastro.github.io/todo-tdd-and-a11y",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "lint": "npx @biomejs/biome check --write ./src/ ./index.html",
+    "dev": "NODE_ENV=dev vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.15",
+    "@types/node": "^25.9.1",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.2",
+    "gh-pages": "^6.3.0",
+    "globals": "^17.6.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.14"
+  }
+}
