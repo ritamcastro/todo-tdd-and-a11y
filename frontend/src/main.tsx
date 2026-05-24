@@ -6,6 +6,7 @@ const rootContainer: Element | DocumentFragment | null = document.getElementById
 const ToDo = () => {
   const [newItem, setNewItem] = useState<string>('')
   const [todos, setTodos] = useState<string[]>([])
+  const [isDone, setIsDone] = useState<boolean>(false)
 
   const addToDo = () => {
     setTodos([...todos, newItem])
@@ -21,7 +22,13 @@ const ToDo = () => {
       />
       <button onClick={addToDo}>Add</button>
       {todos.map(item => (
-        <div>{item}</div>
+        <div>
+          <input
+            type="checkbox"
+            onChange={() => setIsDone(!isDone)}
+          />
+          <div style={{ textDecoration: isDone ? 'line-through' : 'none' }}>{item}</div>
+        </div>
       ))}
     </div>
   )
