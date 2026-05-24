@@ -3,31 +3,44 @@ import { createRoot } from 'react-dom/client'
 
 const rootContainer: Element | DocumentFragment | null = document.getElementById('root')
 
-const ToDo = () => {
-  const [newItem, setNewItem] = useState<string>('')
-  const [todos, setTodos] = useState<string[]>([])
-  const [isDone, setIsDone] = useState<boolean>(false)
+type ToDoItem = {
+  text: string
+  isDone: boolean
+}
 
-  const addToDo = () => {
-    setTodos([...todos, newItem])
-    setNewItem('')
+const ToDo = () => {
+  const [items, setItems] = useState<ToDoItem[]>([])
+
+  const onAddToDo = (formData: FormData) => {
+    const newItem = { text: formData.get('newItem') as string, isDone: false }
+
+    setItems([...items, newItem])
+  }
+
+  const onToggleItem = (update: ToDoItem) => {
+    const updatedItems = items.map(item => {
+      return item === update ? { ...item, isDone: !item.isDone } : item
+    })
+    setItems(updatedItems)
   }
 
   return (
     <div>
-      <input
-        placeholder="what needs to be done?"
-        value={newItem}
-        onChange={e => setNewItem(e.target.value)}
-      />
-      <button onClick={addToDo}>Add</button>
-      {todos.map(item => (
+      <form action={onAddToDo}>
+        <input
+          placeholder="what needs to be done?"
+          name="newItem"
+        />
+        <button type={'submit'}>Add</button>
+      </form>
+
+      {items.map(item => (
         <div>
           <input
             type="checkbox"
-            onChange={() => setIsDone(!isDone)}
+            onChange={() => onToggleItem(item)}
           />
-          <div style={{ textDecoration: isDone ? 'line-through' : 'none' }}>{item}</div>
+          <div style={{ textDecoration: item.isDone ? 'line-through' : 'none' }}>{item.text}</div>
         </div>
       ))}
     </div>
