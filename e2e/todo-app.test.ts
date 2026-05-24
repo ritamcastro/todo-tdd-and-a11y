@@ -18,4 +18,17 @@ test.describe('The To-Do application', () => {
     await expect(page.getByText('Write our first test')).toBeVisible()
     await expect(input).toHaveValue('')
   })
+
+  test('I want to cross off a To-Do from the list', async ({ page }) => {
+    await page.goto('/')
+
+    await page.getByPlaceholder('what needs to be done?').fill('with something')
+    await page.getByRole('button').click()
+
+    await expect(page.getByText('with something')).toHaveCSS('text-decoration', /none/)
+
+    await page.getByRole('checkbox').click()
+
+    await expect(page.getByText('with something')).toHaveCSS('text-decoration', /line-through/)
+  })
 })
