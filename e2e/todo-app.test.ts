@@ -1,6 +1,12 @@
-import { expect, test } from '@playwright/test'
+import { create } from 'node:domain'
+import { expect, Page, test } from '@playwright/test'
 
 test.describe('The To-Do application', () => {
+  const createTodo = async (page: Page, text: string) => {
+    await page.getByPlaceholder('what needs to be done?').fill(text)
+    await page.getByRole('button', { name: 'Add' }).click()
+  }
+
   test('I want to add a new To-Do', async ({ page }) => {
     await page.goto('/')
 
@@ -22,8 +28,7 @@ test.describe('The To-Do application', () => {
   test('I want to cross off a To-Do from the list', async ({ page }) => {
     await page.goto('/')
 
-    await page.getByPlaceholder('what needs to be done?').fill('with something')
-    await page.getByRole('button').click()
+    await createTodo(page, 'with something')
 
     await expect(page.getByText('with something')).toHaveCSS('text-decoration', /none/)
 
@@ -35,10 +40,8 @@ test.describe('The To-Do application', () => {
   test('I want to cross off multiple To-Dos from the list', async ({ page }) => {
     await page.goto('/')
 
-    await page.getByPlaceholder('what needs to be done?').fill('first thing')
-    await page.getByRole('button').click()
-    await page.getByPlaceholder('what needs to be done?').fill('second thing')
-    await page.getByRole('button').click()
+    await createTodo(page, 'first thing')
+    await createTodo(page, 'second thing')
 
     const firstItem = page.getByLabel('first thing')
     const secondItem = page.getByLabel('second thing')
@@ -52,5 +55,20 @@ test.describe('The To-Do application', () => {
     await firstItem.click()
 
     await expect(firstItem).toBeChecked()
+  })
+
+  test('I want to delete to-dos from the list', async ({ page }) => {
+    await page.goto('/')
+
+    await createTodo(page, 'one to keep')
+    await createTodo(page, 'one to delete')
+
+    const todoItems = page.getByRole('listitem')
+    await expect(todoItems).toHaveCount(2)
+
+    const deleteButtons = page.getByRole('button', { name: '🗑️' })
+    await deleteButtons.last().click()
+
+    await expect(page.getByText('one to delete')).not.toBeVisible()
   })
 })
