@@ -18,9 +18,14 @@ const ToDo = () => {
     setItems([...items, newItem])
   }
 
-  const onToggleItem = (update: ToDoItem) => {
+  const onDeleteToDo = (id: number) => {
+    const updatedItems = items.filter(item => item.id !== id)
+    setItems(updatedItems)
+  }
+
+  const onToggleItem = (id: number) => {
     const updatedItems = items.map(item => {
-      return item === update ? { ...item, isDone: !item.isDone } : item
+      return item.id === id ? { ...item, isDone: !item.isDone } : item
     })
     setItems(updatedItems)
   }
@@ -36,11 +41,11 @@ const ToDo = () => {
       </form>
 
       {items.map(item => (
-        <div>
+        <div role="listitem">
           <input
             id={item.id.toString()}
             type="checkbox"
-            onChange={() => onToggleItem(item)}
+            onChange={() => onToggleItem(item.id)}
           />
           <label
             htmlFor={item.id.toString()}
@@ -48,6 +53,7 @@ const ToDo = () => {
           >
             {item.text}
           </label>
+          <button onClick={() => onDeleteToDo(item.id)}>🗑️</button>
         </div>
       ))}
     </div>
