@@ -3,14 +3,16 @@
   <defs>
     <style>
       :root {
-        --board: #9BCCCC;
-        --board-stroke: #04615B;
-        --clip: #77A49C;
-        --clip-stroke: #04615B;
-        --lines: #7CA4A4;
+        --board: #afa6bbff;
+        --board-stroke: #27183c;
+        --clip: #714384;
+        --clip-stroke: #27183c;
+        --lines: #714384;
       }
     </style>
   </defs>
+
+
 
   <g id="Clipboard"> 
     <rect x="190" y="140" width="300" height="390" rx="18" fill="var(--board)" stroke="var(--board-stroke)" stroke-width="2"/>
