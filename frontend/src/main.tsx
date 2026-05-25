@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client'
 const rootContainer: Element | DocumentFragment | null = document.getElementById('root')
 
 type ToDoItem = {
+  id: number
   text: string
   isDone: boolean
 }
@@ -12,7 +13,7 @@ const ToDo = () => {
   const [items, setItems] = useState<ToDoItem[]>([])
 
   const onAddToDo = (formData: FormData) => {
-    const newItem = { text: formData.get('newItem') as string, isDone: false }
+    const newItem = { id: Date.now(), text: formData.get('newItem') as string, isDone: false }
 
     setItems([...items, newItem])
   }
@@ -37,10 +38,16 @@ const ToDo = () => {
       {items.map(item => (
         <div>
           <input
+            id={item.id.toString()}
             type="checkbox"
             onChange={() => onToggleItem(item)}
           />
-          <div style={{ textDecoration: item.isDone ? 'line-through' : 'none' }}>{item.text}</div>
+          <label
+            htmlFor={item.id.toString()}
+            style={{ textDecoration: item.isDone ? 'line-through' : 'none' }}
+          >
+            {item.text}
+          </label>
         </div>
       ))}
     </div>
