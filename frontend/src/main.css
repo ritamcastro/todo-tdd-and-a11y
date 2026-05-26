@@ -52,6 +52,11 @@
   opacity: 0.88;
 }
 
+.new-todo-btn:focus-visible {
+  outline: 3px solid var(--color-white);
+  outline-offset: 2px;
+}
+
 .new-task-input {
   flex: 1;
   min-width: 0;
@@ -61,10 +66,11 @@
   border-radius: 4px;
   padding: 1px 2px;
   font-size: 15px;
-  outline: none;
 }
 
-.new-task-input:focus {
+.new-task-input:focus-visible {
+  outline: 3px solid var(--color-white);
+  outline-offset: 2px;
   border-color: var(--color-dark);
 }
 
@@ -102,6 +108,12 @@
   background: transparent;
   border: none;
   cursor: pointer;
+}
+
+.delete-todo-btn:focus-visible {
+  outline: 3px solid var(--color-dark);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
 .footer {
