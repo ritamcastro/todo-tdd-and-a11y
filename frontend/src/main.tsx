@@ -35,8 +35,9 @@ const ToDo = () => {
     <div className="homepage">
       <div className="header">
         <img
+          alt="A clipboard, the logo of our application"
           height={44}
-          src="../assets/clipboard.svg"
+          src=".../assets/clipboard.svg"
         />
         <div>My To-Do List</div>
       </div>
@@ -61,8 +62,8 @@ const ToDo = () => {
         {items.length > 0 && (
           <div className="todo-list">
             {items.map(item => (
-              <div
-                role="listitem"
+              <li
+                key={item.id}
                 className="todo-item"
               >
                 <input
@@ -78,12 +79,13 @@ const ToDo = () => {
                   {item.text}
                 </label>
                 <button
+                  type="button"
                   className="delete-todo-btn"
                   onClick={() => onDeleteToDo(item.id)}
                 >
                   🗑️
                 </button>
-              </div>
+              </li>
             ))}
           </div>
         )}
