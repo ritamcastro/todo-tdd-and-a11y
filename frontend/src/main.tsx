@@ -1,5 +1,6 @@
 import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
+import './main.css'
 
 const rootContainer: Element | DocumentFragment | null = document.getElementById('root')
 
@@ -31,31 +32,63 @@ const ToDo = () => {
   }
 
   return (
-    <div>
-      <form action={onAddToDo}>
-        <input
-          placeholder="what needs to be done?"
-          name="newItem"
+    <div className="homepage">
+      <div className="header">
+        <img
+          height={44}
+          src="../assets/clipboard.svg"
         />
-        <button type={'submit'}>Add</button>
-      </form>
-
-      {items.map(item => (
-        <div role="listitem">
+        <div>My To-Do List</div>
+      </div>
+      <div className="working-area">
+        <form
+          className="new-todo"
+          action={onAddToDo}
+        >
           <input
-            id={item.id.toString()}
-            type="checkbox"
-            onChange={() => onToggleItem(item.id)}
+            className="new-task-input"
+            placeholder="what needs to be done?"
+            name="newItem"
           />
-          <label
-            htmlFor={item.id.toString()}
-            style={{ textDecoration: item.isDone ? 'line-through' : 'none' }}
+          <button
+            className="new-todo-btn"
+            type={'submit'}
           >
-            {item.text}
-          </label>
-          <button onClick={() => onDeleteToDo(item.id)}>🗑️</button>
-        </div>
-      ))}
+            Add
+          </button>
+        </form>
+
+        {items.length > 0 && (
+          <div className="todo-list">
+            {items.map(item => (
+              <div
+                role="listitem"
+                className="todo-item"
+              >
+                <input
+                  id={item.id.toString()}
+                  type="checkbox"
+                  onChange={() => onToggleItem(item.id)}
+                />
+                <label
+                  className="todo-item-label"
+                  htmlFor={item.id.toString()}
+                  style={{ textDecoration: item.isDone ? 'line-through' : 'none' }}
+                >
+                  {item.text}
+                </label>
+                <button
+                  className="delete-todo-btn"
+                  onClick={() => onDeleteToDo(item.id)}
+                >
+                  🗑️
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="footer">Made with 🤍, by ritamcastro</div>
     </div>
   )
 }

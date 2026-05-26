@@ -1,0 +1,124 @@
+:root {
+  --color-dark: #27183c;
+  --color-mid: #714384;
+  --color-light: #afa6bbff;
+  --color-btn-bg: #ff5500;
+  --color-white: #ffffff;
+  --board: #afa6bbff;
+}
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  align-items: flex-start;
+  padding: 0.25em;
+  background-color: var(--color-dark);
+  gap: 1em;
+}
+
+.header {
+  background: var(--color-dark);
+  border-radius: 6px;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.working-area {
+  display: flex;
+  flex-direction: column;
+  width: 44vw;
+  gap: 0.5em;
+}
+
+.new-todo {
+  display: flex;
+  width: 100%;
+  gap: 0.5em;
+}
+
+.new-todo-btn {
+  flex-shrink: 0;
+  background: var(--color-mid);
+  color: var(--color-white);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.new-todo-btn:hover {
+  opacity: 0.88;
+}
+
+.new-task-input {
+  flex: 1;
+  min-width: 0;
+  background: var(--color-white);
+  color: var(--color-dark);
+  border: 1.5px solid var(--color-mid);
+  border-radius: 4px;
+  padding: 1px 2px;
+  font-size: 15px;
+  outline: none;
+}
+
+.new-task-input:focus {
+  border-color: var(--color-dark);
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-light);
+  padding: 0.25rem;
+  border: solid 1px var(--color-dark);
+  border-radius: 12px;
+  gap: 0.5em;
+}
+
+.todo-item {
+  display: flex;
+  flex-direction: row;
+  border-radius: 12px;
+  border: solid 1px var(--color-dark);
+}
+
+.todo-item-label {
+  /* color: var(--color-white); */
+  color: var(--color-dark);
+  font-size: 13px;
+}
+
+.todo-item-label {
+  display: flex;
+  padding: 1px 2px;
+  font-size: 15px;
+  width: 100%;
+}
+
+.delete-todo-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.footer {
+  display: flex;
+  font-size: 10px;
+  color: var(--color-white);
+  margin-top: auto;
+  padding-bottom: 1em;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
