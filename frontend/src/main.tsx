@@ -32,14 +32,14 @@ const ToDo = () => {
   }
 
   return (
-    <div className="homepage">
+    <main className="homepage">
       <div className="header">
         <img
           alt="A clipboard, the logo of our application"
           height={44}
-          src=".../assets/clipboard.svg"
+          src="../assets/clipboard.svg"
         />
-        <div>My To-Do List</div>
+        <h1>My To-Do List</h1>
       </div>
       <div className="working-area">
         <form
@@ -81,6 +81,7 @@ const ToDo = () => {
                 <button
                   type="button"
                   className="delete-todo-btn"
+                  aria-label={`Delete ${item.text}`}
                   onClick={() => onDeleteToDo(item.id)}
                 >
                   🗑️
@@ -90,8 +91,8 @@ const ToDo = () => {
           </div>
         )}
       </div>
-      <div className="footer">Made with 🤍, by ritamcastro</div>
-    </div>
+      <footer className="footer">Made with 🤍, by ritamcastro</footer>
+    </main>
   )
 }
 

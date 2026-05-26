@@ -118,7 +118,7 @@
 
 .footer {
   display: flex;
-  font-size: 10px;
+  font-size: 1em;
   color: var(--color-white);
   margin-top: auto;
   padding-bottom: 1em;
