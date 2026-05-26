@@ -1,5 +1,4 @@
-import { create } from 'node:domain'
-import { expect, Page, test } from '@playwright/test'
+import { expect, type Page, test } from '@playwright/test'
 
 test.describe('The To-Do application', () => {
   const createTodo = async (page: Page, text: string) => {
