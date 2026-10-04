@@ -13,6 +13,7 @@
   ],
   "settings": {
     "biome.enabled": false, // To avoid spining up multiple instances of biome
+    "biome.configurationPath": "./config/biome.json",
     "vitest.shellType": "terminal",
     "files.exclude": {
       "**/.git": true,
