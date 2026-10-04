@@ -1,0 +1,22 @@
+{
+  "name": "todo-tdd-and-a11y",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "exercise": "node scripts/run-task.cjs exercise",
+    "solution": "node scripts/run-task.cjs solution",
+    "solution:extra": "node scripts/run-task.cjs solution-extra"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.3.0",
+      "onFail": "download"
+    }
+  },
+  "type": "module"
+}
