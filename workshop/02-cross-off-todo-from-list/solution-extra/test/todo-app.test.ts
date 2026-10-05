@@ -31,4 +31,26 @@ test.describe('The To-Do application', () => {
 
     await expect(page.getByText('with something')).toHaveCSS('text-decoration', /line-through/)
   })
+
+  test('I want to cross off multiple To-Dos from the list', async ({ page }) => {
+    await page.goto('/')
+
+    await page.getByPlaceholder('what needs to be done?').fill('first thing')
+    await page.getByRole('button').click()
+    await page.getByPlaceholder('what needs to be done?').fill('second thing')
+    await page.getByRole('button').click()
+
+    const firstItem = page.getByLabel('first thing')
+    const secondItem = page.getByLabel('second thing')
+
+    await expect(firstItem).toBeVisible()
+    await expect(secondItem).toBeVisible()
+
+    await expect(firstItem).not.toBeChecked()
+    await expect(secondItem).not.toBeChecked()
+
+    await firstItem.click()
+
+    await expect(firstItem).toBeChecked()
+  })
 })
