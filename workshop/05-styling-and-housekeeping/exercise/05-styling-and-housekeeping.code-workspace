@@ -1,0 +1,38 @@
+{
+  "folders": [
+    {
+      "path": ".",
+      "name": "05-styling-and-housekeeping-exercise"
+    },
+  ],
+  "settings": {
+    "biome.enabled": false, // To avoid spining up multiple instances of biome
+    "biome.configurationPath": "./config/biome.json",
+    "vitest.shellType": "terminal",
+    "files.exclude": {
+      "**/.git": true,
+      "**/.DS_Store": true,
+      "frontend/": true,
+      "e2e": true
+    },
+    "editor.defaultFormatter": null,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.biome": "explicit"
+    },
+    "[css]": {
+      "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.formatOnPaste": true,
+    "[json]": {
+      "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "github.copilot.enable": {
+      "*": false
+    }
+  }
+}
