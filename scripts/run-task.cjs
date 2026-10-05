@@ -16,14 +16,15 @@ if (process.argv.length === 0) {
     logError('‼️ Please specify an number, e.g., pnpm exercise 01, pnpm solution 02 or pnpm solution:extra 04');
 }
 
-const taskPath = path.join(__dirname, '..',
-    'workshop', `${taskNumber}-${getTaskName(taskNumber)}`, mode);
-
-if (!fs.existsSync(taskPath)) {
+const taskDirectory = findTaskDirectory(path.join(__dirname, '..', 'workshop'), taskNumber);
+if (taskDirectory === null) {
     logError(`🤷 Exercise ${taskNumber} not found!`);
 }
 
-logInfo(`🚧 Starting Exercise ${taskNumber}: ${getTaskName(taskNumber)}...`);
+const taskName = taskDirectory.name.slice(`${taskNumber}-`.length);
+const taskPath = path.join(taskDirectory.path, mode);
+
+logInfo(`🚧 Starting Exercise ${taskNumber}: ${taskName}...`);
 
 const hasVsCode = hasPreferedIde(PREFERED_EDITOR);
 
@@ -42,17 +43,18 @@ try {
     console.error('‼️ Error running exercise:', error);
 }
 
-// Helper function to get exercise name from number
-function getTaskName(num) {
-    const exerciseMap = {
-        '01': 'add-new-todo-to-list',
-        '02': 'cross-off-todo-from-list',
-        '03': 'error-boundaries',
-        '04': 'query-criticality',
-    };
+function findTaskDirectory(workshopPath, taskNumber) {
+    const prefix = `${taskNumber}-`;
 
-    return exerciseMap[num] || 'unknown-exercise';
+    const entries = fs.readdirSync(workshopPath, { withFileTypes: true });
+
+    const match = entries.find(entry => entry.isDirectory() && entry.name.startsWith(prefix));
+    if (!match) {
+        return null;
+    }
+    return { name: match.name, path: path.join(workshopPath, match.name), };
 }
+
 
 // Helper function to check if the machine has VS Code installed so that 
 // we can open it up with the exercise/solution folder
