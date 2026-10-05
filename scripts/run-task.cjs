@@ -46,7 +46,7 @@ try {
 function getTaskName(num) {
     const exerciseMap = {
         '01': 'add-new-todo-to-list',
-        '02': 'timeout-pattern',
+        '02': 'cross-off-todo-from-list',
         '03': 'error-boundaries',
         '04': 'query-criticality',
     };
