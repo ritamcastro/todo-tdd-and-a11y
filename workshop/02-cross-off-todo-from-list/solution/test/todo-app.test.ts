@@ -31,4 +31,10 @@ test.describe('The To-Do application', () => {
 
     await expect(page.getByText('with something')).toHaveCSS('text-decoration', /line-through/)
   })
+
+  // 💡 What if .... 
+  test('I want to cross off multiple To-Dos from the list', async ({ page }) => {
+    await page.goto('/')
+    // 🚧 
+  })
 })
