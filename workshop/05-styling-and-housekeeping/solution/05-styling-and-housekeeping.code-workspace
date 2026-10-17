@@ -6,9 +6,7 @@
     },
   ],
   "settings": {
-    // 🚧 Once you are done with the styles, try setting the biome.enabled to true and reload your VS Code ;) 
-    //    That will take us to 2-housekeeping ;)
-    "biome.enabled": false, // To avoid spining up multiple instances of biome
+    "biome.enabled": true, // To avoid spining up multiple instances of biome
     "biome.configurationPath": "./config/biome.json",
     "vitest.shellType": "terminal",
     "files.exclude": {

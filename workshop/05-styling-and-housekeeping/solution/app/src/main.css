@@ -52,6 +52,13 @@
   opacity: 0.88;
 }
 
+/* ♿️ a11y improvement: ensure focus styles are visible | WCAG 2.4.7 Focus Visible, Level AA */
+.new-todo-btn:focus-visible {
+  outline: 3px solid var(--color-white);
+  outline-offset: 2px;
+}
+
+
 .new-task-input {
   flex: 1;
   min-width: 0;
@@ -65,6 +72,13 @@
 }
 
 .new-task-input:focus {
+  border-color: var(--color-dark);
+}
+
+  /* ♿️ a11y improvement: ensure focus styles are visible | WCAG 2.4.7 Focus Visible, Level AA */
+.new-task-input:focus-visible {
+  outline: 3px solid var(--color-white);
+  outline-offset: 2px;
   border-color: var(--color-dark);
 }
 
@@ -101,6 +115,13 @@
   background: transparent;
   border: none;
   cursor: pointer;
+}
+
+/* ♿️ a11y improvement: ensure focus styles are visible | WCAG 2.4.7 Focus Visible, Level AA */
+.delete-todo-btn:focus-visible {
+  outline: 3px solid var(--color-dark);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
 .footer {
