@@ -1,0 +1,41 @@
+{
+  "name": "frontend-todo-tdd-and-a11y",
+  "homepage": "https://ritamcastro.github.io/todo-tdd-and-a11y",
+  "description": "Exercise 01: Add a new To-Do to the list - Solution",
+  "author": "Rita Castro",
+  "license": "MIT",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "keywords": [
+    "playwright",
+    "tdd",
+    "a11y",
+    "workshop"
+  ],
+  "scripts": {
+    "lint": "biome check --write --config-path=./config/biome.json ./app ./test",
+    "dev": "NODE_ENV=dev vite --config config/vite.config.js",
+    "build": "vite build --config config/vite.config.js",
+    "pretest": "npx playwright install --with-deps",
+    "test": "npx playwright test --config=config/playwright.config.ts",
+    "test-ui": "playwright test --ui"
+  },
+  "dependencies": {
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
+    "@biomejs/biome": "^2.4.15",
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.1",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.2",
+    "gh-pages": "^6.3.0",
+    "globals": "^17.6.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.14"
+  }
+}
