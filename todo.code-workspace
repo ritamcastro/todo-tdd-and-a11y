@@ -41,6 +41,9 @@
     "codesnap.backgroundColor": "rgba(1,1,1, 0.1)",
     "[json]": {
       "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "github.copilot.enable": {
+      "*": false
     }
   }
 }

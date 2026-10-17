@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "devEngines.packageManager": "pnpm",
   "scripts": {
     "exercise": "node scripts/run-task.cjs exercise",
     "solution": "node scripts/run-task.cjs solution",
