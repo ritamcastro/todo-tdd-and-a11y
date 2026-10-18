@@ -1,5 +1,6 @@
 import { StrictMode, useState, useRef } from 'react'
 import { createRoot } from 'react-dom/client'
+import clipboard from '../assets/clipboard.svg'
 import './main.css'
 
 const rootContainer: Element | DocumentFragment | null = document.getElementById('root')
@@ -39,7 +40,7 @@ const ToDo = () => {
         <img
           alt="A clipboard, the logo of our application"
           height={44}
-          src="../assets/clipboard.svg"
+          src={clipboard}
         />
         <h1>My To-Do List</h1>
       </div>
