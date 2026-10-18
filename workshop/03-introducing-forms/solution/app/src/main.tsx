@@ -20,7 +20,7 @@ const ToDo = () => {
     const formData = new FormData(event.currentTarget as HTMLFormElement)
     const text = formData.get('newItem') as string
 
-    setTodos([...todos, { id: Date.now(), text: text, isDone: false }])
+    setTodos(todos => [...todos, { id: Date.now(), text: text, isDone: false }])
     // ℹ️ Replaces the manual cleanup of setNewItem(')')
     event.currentTarget.reset()
   }

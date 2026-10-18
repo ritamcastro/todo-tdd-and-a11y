@@ -16,7 +16,7 @@ const ToDo = () => {
   const [todos, setTodos] = useState<ToDoItem[]>([])
 
   const onAddToDo = () => {
-    setTodos([...todos, { id: Date.now(), text: newItem, isDone: false }])
+    setTodos(todos => [...todos, { id: Date.now(), text: newItem, isDone: false }])
     setNewItem('')
   }
 

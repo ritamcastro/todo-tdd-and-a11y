@@ -15,7 +15,7 @@ const ToDo = () => {
   const onAddToDo = (formData: FormData) => {
     const newItem = { id: Date.now(), text: formData.get('newItem') as string, isDone: false }
 
-    setItems([...items, newItem])
+    setItems(items => [...items, newItem])
   }
 
   const onToggleItem = (update: ToDoItem) => {

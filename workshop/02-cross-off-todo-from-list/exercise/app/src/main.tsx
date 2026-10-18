@@ -8,7 +8,7 @@ const ToDo = () => {
   const [todos, setTodos] = useState<string[]>([])
 
   const addToDo = () => {
-    setTodos([...todos, newItem])
+    setTodos(todos => [...todos, newItem])
     // ℹ️ This cleans up the input when we add a new todo
     setNewItem('')
   }

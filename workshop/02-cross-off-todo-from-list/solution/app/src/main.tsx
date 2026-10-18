@@ -9,7 +9,7 @@ const ToDo = () => {
   const [isDone, setIsDone] = useState<boolean>(false)
 
   const addToDo = () => {
-    setTodos([...todos, newItem])
+    setTodos(todos => [...todos, newItem])
     setNewItem('')
   }
 
