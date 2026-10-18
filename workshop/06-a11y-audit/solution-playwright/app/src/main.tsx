@@ -13,14 +13,10 @@ type ToDoItem = {
 const ToDo = () => {
   const [items, setItems] = useState<ToDoItem[]>([])
 
-  const onAddToDo = (event: React.SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault()
+  const onAddToDo = (formData: FormData) => {
+    const newItem = { id: Date.now(), text: formData.get('newItem') as string, isDone: false }
 
-    const formData = new FormData(event.currentTarget as HTMLFormElement)
-    const text = formData.get('newItem') as string
-
-    setItems([...items, { id: Date.now(), text: text, isDone: false }])
-    event.currentTarget.reset()
+    setItems([...items, newItem])
   }
 
   const onDeleteToDo = (id: number) => {
@@ -52,8 +48,7 @@ const ToDo = () => {
 
       <div className="working-area">
 
-        <form className="new-todo"
-          onSubmit={onAddToDo}>
+        <form className="new-todo" action={onAddToDo}>
           <input
             className="new-task-input"
             placeholder="what needs to be done?"

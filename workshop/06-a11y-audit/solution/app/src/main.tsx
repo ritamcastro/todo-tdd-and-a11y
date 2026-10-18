@@ -13,14 +13,10 @@ type ToDoItem = {
 const ToDo = () => {
   const [items, setItems] = useState<ToDoItem[]>([])
 
-  const onAddToDo = (event: React.SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault()
+  const onAddToDo = (formData: FormData) => {
+    const newItem = { id: Date.now(), text: formData.get('newItem') as string, isDone: false }
 
-    const formData = new FormData(event.currentTarget as HTMLFormElement)
-    const text = formData.get('newItem') as string
-
-    setItems([...items, { id: Date.now(), text: text, isDone: false }])
-    event.currentTarget.reset()
+    setItems([...items, newItem])
   }
 
   const onDeleteToDo = (id: number) => {
@@ -71,8 +67,7 @@ const ToDo = () => {
               WCAG 3.3.2 Labels or Instructions (Level A)
 
               What needs to be done: ⌥ 1: Add a <label/>
-         <form className="new-todo"
-          onSubmit={onAddToDo}>
+         <form className="new-todo" action={onAddToDo}>
 
           <label className='new-todo-label'>
             Add a new To-Do
@@ -87,8 +82,7 @@ const ToDo = () => {
         </form> */}
 
         {/* What needs to be done: ⌥ 2: Hide the <label />
-        <form className="new-todo"
-          onSubmit={onAddToDo}>
+        <form className="new-todo" action={onAddToDo}>
 
           <label className='sr-only' htmlFor='newItem'>
             Add a new To-Do
@@ -106,8 +100,7 @@ const ToDo = () => {
         </form> */}
 
         {/* What needs to be done: ⌥ 3: Use <aria-label /> */}
-        <form className="new-todo"
-          onSubmit={onAddToDo}>
+        <form className="new-todo" action={onAddToDo}>
           <input
             className="new-task-input"
             id="newItem"

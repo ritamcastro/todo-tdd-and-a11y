@@ -12,14 +12,10 @@ type ToDoItem = {
 const ToDo = () => {
   const [items, setItems] = useState<ToDoItem[]>([])
 
-  const onAddToDo = (event: React.SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault()
+  const onAddToDo = (formData: FormData) => {
+    const newItem = { id: Date.now(), text: formData.get('newItem') as string, isDone: false }
 
-    const formData = new FormData(event.currentTarget as HTMLFormElement)
-    const text = formData.get('newItem') as string
-
-    setItems([...items, { id: Date.now(), text: text, isDone: false }])
-    event.currentTarget.reset()
+    setItems([...items, newItem])
   }
 
   const onToggleItem = (update: ToDoItem) => {
@@ -31,7 +27,7 @@ const ToDo = () => {
 
   return (
     <div>
-      <form onSubmit={onAddToDo}>
+      <form action={onAddToDo}>
         <input
           placeholder="what needs to be done?"
           name="newItem"
