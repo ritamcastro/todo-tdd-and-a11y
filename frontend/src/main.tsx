@@ -1,4 +1,4 @@
-import { StrictMode, useState } from 'react'
+import { StrictMode, useState, useRef } from 'react'
 import { createRoot } from 'react-dom/client'
 import './main.css'
 
@@ -13,10 +13,12 @@ type ToDoItem = {
 const ToDo = () => {
   const [items, setItems] = useState<ToDoItem[]>([])
 
-  const onAddToDo = (formData: FormData) => {
-    const newItem = { id: Date.now(), text: formData.get('newItem') as string, isDone: false }
+  const nextItemId = useRef(0)
 
-    setItems([...items, newItem])
+  const onAddToDo = (formData: FormData) => {
+    const newItem = { id: nextItemId.current++, text: formData.get('newItem') as string, isDone: false }
+
+    setItems(currentItems => [...currentItems, newItem])
   }
 
   const onDeleteToDo = (id: number) => {

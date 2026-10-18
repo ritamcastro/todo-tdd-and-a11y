@@ -1,9 +1,19 @@
 import { expect, type Page, test } from '@playwright/test'
 
 test.describe('The To-Do application', () => {
+
   const createTodo = async (page: Page, text: string) => {
-    await page.getByPlaceholder('what needs to be done?').fill(text)
+    const input = page.getByPlaceholder('what needs to be done?')
+    await input.fill(text)
+
     await page.getByRole('button', { name: 'Add' }).click()
+
+    // ℹ️ This assertion was added here to make sure that the item is 
+    //    visible before we continue with the test. We use the text and not a 
+    //    label as it the latter is shared beteen the input and the text itself.
+    //    This is a good practice to avoid flaky tests.
+    await expect(page.getByText(text)).toBeVisible()
+    await expect(input).toHaveValue('')
   }
 
   test('I want to add a new To-Do', async ({ page }) => {
@@ -42,8 +52,13 @@ test.describe('The To-Do application', () => {
     await createTodo(page, 'first thing')
     await createTodo(page, 'second thing')
 
-    const firstItem = page.getByLabel('first thing')
-    const secondItem = page.getByLabel('second thing')
+    // const firstItem = page.getByLabel('first thing')
+    // const secondItem = page.getByLabel('second thing')
+    // ℹ️ The accessible name for the inputs is now ensured by its aria label.
+    //    Getting it by label would resolve in two elements, since the label is 
+    //    shared between the input and the text.
+    const firstItem = page.getByRole('checkbox', { name: 'first thing' })
+    const secondItem = page.getByRole('checkbox', { name: 'second thing' })
 
     await expect(firstItem).toBeVisible()
     await expect(secondItem).toBeVisible()
@@ -54,6 +69,12 @@ test.describe('The To-Do application', () => {
     await firstItem.click()
 
     await expect(firstItem).toBeChecked()
+    await expect(secondItem).not.toBeChecked()
+
+    await secondItem.click()
+
+    await expect(firstItem).toBeChecked()
+    await expect(secondItem).toBeChecked()
   })
 
   test('I want to delete to-dos from the list', async ({ page }) => {
@@ -65,7 +86,9 @@ test.describe('The To-Do application', () => {
     const todoItems = page.getByRole('listitem')
     await expect(todoItems).toHaveCount(2)
 
-    const deleteButtons = page.getByRole('button', { name: '🗑️' })
+    // const deleteButtons = page.getByRole('button', { name: '🗑️' })
+    // ℹ️ The accessible name for the button is now ensured by its aria label.
+    const deleteButtons = page.getByRole('button', { name: 'Delete', exact: false })
     await deleteButtons.last().click()
 
     await expect(page.getByText('one to delete')).not.toBeVisible()

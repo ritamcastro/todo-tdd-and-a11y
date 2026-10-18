@@ -4,3 +4,16 @@
 **/.vscode/*
 !**/.vscode/extensions.json
 **/.idea
+
+## For Workshop structure
+# app
+workshop/**/exercise/node_modules/
+workshop/**/exercise/dist/
+
+# Playwright
+node_modules/
+workshop/**/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
