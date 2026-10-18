@@ -14,7 +14,7 @@
   "scripts": {
     "pretest": "npx playwright install --with-deps",
     "test": "npx playwright test",
-    "test-ui": "playwright test --ui"
+    "test:ui": "playwright test --ui"
   },
   "type": "commonjs",
   "devDependencies": {
