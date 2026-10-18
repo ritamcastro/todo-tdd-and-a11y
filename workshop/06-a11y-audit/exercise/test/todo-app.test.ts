@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'
+import { expect, test, type Page } from '@playwright/test'
 
 test.describe('The To-Do application', () => {
 
@@ -8,10 +8,11 @@ test.describe('The To-Do application', () => {
 
     await page.getByRole('button', { name: 'Add' }).click()
 
-    // ℹ️ This assertion was added here to make sure that the item is visible 
-    //    before we continue with the test. 
+    // ℹ️ This assertion was added here to make sure that the item is 
+    //    visible before we continue with the test. We use the text and not a 
+    //    label as it the latter is shared beteen the input and the text itself.
     //    This is a good practice to avoid flaky tests.
-    await expect(page.getByLabel(text)).toBeVisible()
+    await expect(page.getByText(text)).toBeVisible()
     await expect(input).toHaveValue('')
   }
 
@@ -61,6 +62,12 @@ test.describe('The To-Do application', () => {
     await firstItem.click()
 
     await expect(firstItem).toBeChecked()
+    await expect(secondItem).not.toBeChecked()
+
+    await secondItem.click()
+
+    await expect(firstItem).toBeChecked()
+    await expect(secondItem).toBeChecked()
   })
 
   test('I want press Enter and add my To-Do to the list', async ({ page }) => {
